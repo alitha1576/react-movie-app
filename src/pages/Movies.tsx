@@ -28,7 +28,7 @@ export default function Movies() {
 
   return (
     <>
-      <h2>Tranding movies now</h2>
+      <h2 className="sectionTitle">Tranding movies now</h2>
       <CardsContainer items={media} />
     </>
   );

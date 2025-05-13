@@ -28,7 +28,7 @@ export default function Series() {
 
   return (
     <>
-      <h2>Series: on air now</h2>
+      <h2 className="sectionTitle">Series: on air now</h2>
       <CardsContainer items={media} />
     </>
   );

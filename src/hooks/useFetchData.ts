@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { options } from "../api/tmdb";
 
-const useFetchData = ( url:string ) => {
+const useFetchData = ( url:string, mapFn ) => {
     const [ data, setData ] = useState([]);
     const [ loading, setLoading] = useState(true);
     const [ error, setError ] = useState(null);
@@ -10,14 +10,15 @@ const useFetchData = ( url:string ) => {
         fetch(url, options)
           .then((responce) => responce.json())
           .then((data) => {
-            setData(data.results);
+            const mapped = data.results.map(mapFn);
+            setData(mapped);
             setLoading(false);
           })
           .catch((err) => {
             setError(err);
             setLoading(false);
     });
-      }, [url]);
+      }, [url, mapFn]);
       return { data, loading, error };
 }
 

@@ -2,9 +2,9 @@ import type { CardProps } from "../types/CardProps";
 
 export default function Card({ id, title, src, rating }: CardProps) {
   return (
-    <div className="cardContainer" data-id={id}>
+    <div className="card" data-id={id}>
       <img src={src} alt={title} />
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <p>Rating: {rating}</p>
     </div>
   );
