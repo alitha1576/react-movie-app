@@ -32,6 +32,13 @@ nav li {
   cursor: pointer;
 }
 
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem;
+  justify-content: center;
+}
 
 .card {
   width: 100%;
@@ -72,14 +79,6 @@ nav li {
 .card p {
   font-size: 0.875rem;
   margin: 0 0.5rem 0.5rem;
-}
-
-.cardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
-  justify-content: center;
 }
 
 .sectionTitle {
