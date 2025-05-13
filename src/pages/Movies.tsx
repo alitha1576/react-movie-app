@@ -1,27 +1,35 @@
-import Card from "../components/Card";
+import { useEffect, useState } from "react";
+import type { CardProps } from "../types/CardProps";
+import CardsContainer from "../components/CardsContainer";
+import type { TMDBMovie } from '../types/TMDBMovie';
+import { options } from '../api/tmdb'
+
+const API_URL =
+  "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+
 
 export default function Movies() {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZjI1MzU3N2NiM2FkMmQ0NmI1ODJhNGIxODBkYmJlZSIsIm5iZiI6MTc0NjY5Njg3MC42NjEsInN1YiI6IjY4MWM3YWE2ZGM5MzcyODViYzg4YzEzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.glC2PreS_jvS7JBc3t0UwEQ3lZm_dCXnG4sMfD-gmi4",
-    },
-  };
+  const [media, setMedia] = useState<CardProps[]>([]);
 
-  fetch(
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-    options
-  )
-    .then((res) => res.json())
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
+  useEffect(() => {
+    fetch(API_URL, options)
+      .then((responce) => responce.json())
+      .then((data) => {
+        const mapped = data.results.map((item: TMDBMovie) => ({
+          id: item.id,
+          title: item.title,
+          src: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+          rating: Number(item.vote_average.toFixed(1)),
+        }));
+        setMedia(mapped);
+      })
+      .catch((err) => console.error("Fetch error:", err));
+  }, []);
 
   return (
     <>
       <h2>Tranding movies now</h2>
-      {/* <Card id={1} title="Anna" src="/hred" rating={5} /> */}
+      <CardsContainer items={media} />
     </>
   );
 }

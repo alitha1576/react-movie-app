@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Series from "./pages/Series";
 import Movies from "./pages/Movies";
+import Error from "./pages/Error.tsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="series" element={<Series />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </div>
     </div>
