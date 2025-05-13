@@ -16,3 +16,8 @@ The application includes the following pages and functionalities:
 - **Frontend**: HTML, CSS, JavaScript
 - **API**: [The Movie Database API](https://www.themoviedb.org/documentation/api)
 - **Framework**: React
+
+
+## To do: 
+- add  loading states and error handling to Movies and Series pages
+
