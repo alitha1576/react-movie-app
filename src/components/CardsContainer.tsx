@@ -1,7 +1,6 @@
 import Card from "./Card";
-import type { CardsContainerPrors } from "../types/CardsContainerProps";
 
-export default function CardsContainer({ items }: CardsContainerPrors) {
+export default function CardsContainer({ items }) {
   return (
     <div className="cardsContainer">
       {items.map((item) => (
@@ -11,6 +10,9 @@ export default function CardsContainer({ items }: CardsContainerPrors) {
           title={item.title}
           src={item.src}
           rating={item.rating}
+          overview={item.overview}
+          year={item.year}
+          language={item.language}
         />
       ))}
     </div>

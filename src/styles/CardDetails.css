@@ -1,0 +1,64 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.cardDetails {
+    background-color: #fff;
+    width: 70%;
+    height: 60%;
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    position: relative;
+    color: black;
+}
+
+.poster {
+    width: 30%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cardInfo {
+    text-align: left;
+}
+
+.cardDetails h2 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.cardDetails p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+}
+
+.closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.closeButton:hover {
+    background: #c0392b;
+}

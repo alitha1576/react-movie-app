@@ -1,10 +1,13 @@
-import type { CardProps } from "../types/CardProps";
+import { useState } from "react";
+import CardDetails from "./CardDetails";
 
-export default function Card({ id, title, src, rating }: CardProps) {
+export default function Card({ id, title, src, rating, overview, year, language }) {
+  const [open, setOpen] = useState(false);
+
   const handleClick = (e) => {
     const cardId = e.currentTarget.dataset.id;
     console.log("Card ID:", cardId);
-    console.log("Props:", { id, title, src, rating });
+    setOpen(true);
   };
   return (
     <>
@@ -13,6 +16,18 @@ export default function Card({ id, title, src, rating }: CardProps) {
         <h3>{title}</h3>
         <p>Rating: {rating}</p>
       </div>
+
+      {open && (
+        <CardDetails
+          src={src}
+          title={title}
+          imdb={rating.toString()}
+          overview={overview}
+          year={year}
+          language={language}
+          closePopup={() => setOpen(false)}
+        />
+      )}
     </>
   );
 }
