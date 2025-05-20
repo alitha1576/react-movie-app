@@ -1,6 +1,8 @@
 import useFetchData from "../hooks/useFetchData";
-import { useCallback } from "react";
 import CardsContainer from "../components/CardsContainer";
+import { mapMovie } from "../utils/mappers";
+import { mapSeries } from "../utils/mappers";
+
 
 const API_MOVIES_URL =
   "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
@@ -11,38 +13,12 @@ const API_SERIES_URL =
 
 export default function Home() {
 
-  const mapMovie = useCallback(
-    (item) => ({
-      id: item.id,
-      title: item.title,
-      src: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-      rating: Number(item.vote_average.toFixed(1)),
-      overview: item.overview,
-      year: item.release_date,
-      language: item.original_language
-    }),
-    []
-  );
-
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
   } = useFetchData(API_MOVIES_URL, mapMovie);
 
-  const mapSeries = useCallback(
-    (item) => ({
-      id: item.id,
-      title: item.name,
-      src: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-      rating: Number(item.vote_average.toFixed(1)),
-      overview: item.overview,
-      year: item.first_air_date,
-      genre: item.genre_ids,
-      language: item.original_language,
-    }),
-    []
-  );
 
   const {
     data: series,
@@ -57,8 +33,6 @@ export default function Home() {
   if (moviesError || seriesError) {
     return <h2>Error loading data</h2>;
   }
-
-  console.log(movies);
 
   return (
     <div className="homeContainer">

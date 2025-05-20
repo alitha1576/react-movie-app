@@ -1,35 +1,28 @@
-import { useEffect, useState } from "react";
-import type { CardProps } from "../types/CardProps";
-import type { TMDBSeries } from "../types/TMDBSeries";
+import useFetchData from "../hooks/useFetchData";
 import CardsContainer from "../components/CardsContainer";
-import { options } from "../api/tmdb";
+import { mapSeries } from "../utils/mappers";
 
 const API_URL =
   "https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1";
 
-
 export default function Series() {
-  const [media, setMedia] = useState<CardProps[]>([]);
+  const {
+    data: series,
+    loading: seriesLoading,
+    error: seriesError,
+  } = useFetchData(API_URL, mapSeries);
 
-  useEffect(() => {
-    fetch(API_URL, options)
-      .then((responce) => responce.json())
-      .then((data) => {
-        const mapped = data.results.map((item: TMDBSeries) => ({
-          id: item.id,
-          title: item.name,
-          src: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-          rating: Number(item.vote_average.toFixed(1)),
-        }));
-        setMedia(mapped);
-      })
-      .catch((err) => console.error("Fetch error:", err));
-  }, []);
+  if (seriesLoading) {
+    return <h2>Loading...</h2>;
+  }
 
+  if (seriesError) {
+    return <h2>Error loading data</h2>;
+  }
   return (
     <>
       <h2 className="sectionTitle">Series: on air now</h2>
-      <CardsContainer items={media} />
+      <CardsContainer items={series} />
     </>
   );
 }

@@ -1,35 +1,30 @@
-import { useEffect, useState } from "react";
-import type { CardProps } from "../types/CardProps";
+import useFetchData from "../hooks/useFetchData";
 import CardsContainer from "../components/CardsContainer";
-import type { TMDBMovie } from '../types/TMDBMovie';
-import { options } from '../api/tmdb'
+import { mapMovie } from "../utils/mappers";
 
 const API_URL =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
-
 export default function Movies() {
-  const [media, setMedia] = useState<CardProps[]>([]);
+  
+  const {
+    data: movies,
+    loading: moviesLoading,
+    error: moviesError,
+  } = useFetchData(API_URL, mapMovie);
 
-  useEffect(() => {
-    fetch(API_URL, options)
-      .then((responce) => responce.json())
-      .then((data) => {
-        const mapped = data.results.map((item: TMDBMovie) => ({
-          id: item.id,
-          title: item.title,
-          src: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-          rating: Number(item.vote_average.toFixed(1)),
-        }));
-        setMedia(mapped);
-      })
-      .catch((err) => console.error("Fetch error:", err));
-  }, []);
+  if (moviesLoading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (moviesError) {
+    return <h2>Error loading data</h2>;
+  }
 
   return (
     <>
       <h2 className="sectionTitle">Tranding movies now</h2>
-      <CardsContainer items={media} />
+      <CardsContainer items={movies} />
     </>
   );
 }
