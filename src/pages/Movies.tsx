@@ -1,9 +1,7 @@
 import useFetchData from "../hooks/useFetchData";
 import CardsContainer from "../components/CardsContainer";
 import { mapMovie } from "../utils/mappers";
-
-const API_URL =
-  "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+import { API_MOVIE_URL } from "../api/urls";
 
 export default function Movies() {
   
@@ -11,7 +9,7 @@ export default function Movies() {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
-  } = useFetchData(API_URL, mapMovie);
+  } = useFetchData(API_MOVIE_URL, mapMovie);
 
   if (moviesLoading) {
     return <h2>Loading...</h2>;

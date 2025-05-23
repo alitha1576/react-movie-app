@@ -1,14 +1,31 @@
-import { useState } from "react";
-import CardDetails from "./CardDetails";
+import { useNavigate } from "react-router-dom";
 
-export default function Card({ id, title, src, rating, overview, year, language }) {
-  const [open, setOpen] = useState(false);
+export default function Card({
+  id,
+  title,
+  src,
+  rating,
+  overview,
+  year,
+  language,
+}) {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleClick = (e) => {
-    const cardId = e.currentTarget.dataset.id;
-    console.log("Card ID:", cardId);
-    setOpen(true);
+  const handleClick = () => {
+    navigate(`${id}`, {
+      state: {
+        id,
+        title,
+        src,
+        rating,
+        overview,
+        year,
+        language,
+      },
+    });
   };
+
   return (
     <>
       <div className="card" data-id={id} onClick={handleClick}>
@@ -16,18 +33,6 @@ export default function Card({ id, title, src, rating, overview, year, language 
         <h3>{title}</h3>
         <p>Rating: {rating}</p>
       </div>
-
-      {open && (
-        <CardDetails
-          src={src}
-          title={title}
-          imdb={rating.toString()}
-          overview={overview}
-          year={year}
-          language={language}
-          closePopup={() => setOpen(false)}
-        />
-      )}
     </>
   );
 }

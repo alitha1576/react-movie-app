@@ -6,17 +6,12 @@ export default function Header() {
       <NavLink to="/">
         <img src="./src/assets/logo.png" alt="logo" className="logo" />
       </NavLink>
-      
+
       <nav>
-        <NavLink to="/" >
-          Home
-        </NavLink>
-        <NavLink to="/movies" >
-          Movies
-        </NavLink>
-        <NavLink to="/series" >
-          Series
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/movies">Movies</NavLink>
+        <NavLink to="/series">Series</NavLink>
+        <NavLink to="/reviews">Reviews</NavLink>
       </nav>
     </div>
   );

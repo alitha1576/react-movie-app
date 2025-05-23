@@ -19,5 +19,5 @@ The application includes the following pages and functionalities:
 
 
 ## To do: 
-- add  loading states and error handling to Movies and Series pages
+- style cardDetail for mobile version 
 
