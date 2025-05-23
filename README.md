@@ -19,5 +19,4 @@ The application includes the following pages and functionalities:
 
 
 ## To do: 
-- add  loading states and error handling to Movies and Series pages
-
+- If a user navigates directly to /movies?series?home/:id - error 'Data not found' will occure.

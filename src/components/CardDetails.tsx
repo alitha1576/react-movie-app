@@ -1,26 +1,39 @@
-import "../styles/CardDetails.css"
+import "../styles/CardDetails.css";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
-export default function CardDetails({
-  src,
-  title,
-  imdb,
-  language,
-  overview,
-  closePopup,
-  year,
-}) {
+export default function CardDetails() {
+  const { id } = useParams();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
+  const { title, src, rating, overview, year, language } = state || {};
+
+  const parentRoute = window.location.pathname.includes("movies")
+    ? "/movies"
+    : window.location.pathname.includes("series")
+    ? "/series"
+    : "/home";
+
+  const handleClose = () => {
+    navigate(parentRoute);
+  };
+
+  if (!state) {
+    return <h2>Data not found for ID: {id}</h2>;
+  }
+
   return (
-    <div className="overlay" onClick={closePopup}>
+    <div className="overlay" onClick={handleClose}>
       <div className="cardDetails" onClick={(e) => e.stopPropagation()}>
-        <img src={src} alt="" className="poster" />
+        <img src={src} alt={title} className="poster" />
         <div className="cardInfo">
           <h2>{title}</h2>
-          <p>IMDB: {imdb}</p>
+          <p>IMDB: {rating}</p>
           <p>Language: {language}</p>
-          <p>Year: {year.slice(0, 4)}</p>
+          <p>Year: {year?.slice(0, 4)}</p>
           <p>Overview: {overview}</p>
         </div>
-        <button className="closeButton" onClick={closePopup}>
+        <button className="closeButton" onClick={handleClose}>
           Close X
         </button>
       </div>

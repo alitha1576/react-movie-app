@@ -7,6 +7,7 @@ import Movies from "./pages/Movies.tsx";
 import Series from "./pages/Series.tsx";
 import Reviews from "./pages/Reviews.tsx";
 import Error from "./pages/Error.tsx";
+import CardDetails from "./components/CardDetails.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,8 +15,27 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, Component: Home },
-      { path: "movies", Component: Movies },
-      { path: "series", Component: Series },
+      {
+        path: "movies",
+        children: [
+          { index: true, Component: Movies },
+          { path: ":id", Component: CardDetails },
+        ],
+      },
+      {
+        path: "series",
+        children: [
+          { index: true, Component: Series },
+          { path: ":id", Component: CardDetails },
+        ],
+      },
+      {
+        path: "home",
+        children: [
+          { index: true, Component: Home }, 
+          { path: ":id", Component: CardDetails },
+        ],
+      },
       { path: "reviews", Component: Reviews },
       { path: "*", Component: Error },
     ],
