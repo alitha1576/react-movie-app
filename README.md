@@ -19,4 +19,10 @@ The application includes the following pages and functionalities:
 
 
 ## To do: 
+- Search functionality on Movies Series pages?
+- Watchlist (using Context)?
+- Reviews with form for reviews (also Context?)
 - If a user navigates directly to /movies?series?home/:id - error 'Data not found' will occure.
+
+
+

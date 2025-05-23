@@ -7,6 +7,7 @@ import Movies from "./pages/Movies.tsx";
 import Series from "./pages/Series.tsx";
 import Reviews from "./pages/Reviews.tsx";
 import Error from "./pages/Error.tsx";
+import Search from "./pages/Search.tsx";
 import CardDetails from "./components/CardDetails.tsx";
 
 const router = createBrowserRouter([
@@ -30,9 +31,16 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: "search",
+        children: [
+          { index: true, Component: Search },
+          { path: ":id", Component: CardDetails },
+        ],
+      },
+      {
         path: "home",
         children: [
-          { index: true, Component: Home }, 
+          { index: true, Component: Home },
           { path: ":id", Component: CardDetails },
         ],
       },

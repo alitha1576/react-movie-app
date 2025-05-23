@@ -1,5 +1,3 @@
-import { useState } from "react";
-import CardDetails from "./CardDetails";
 import { useNavigate } from "react-router-dom";
 
 export default function Card({
