@@ -17,6 +17,10 @@ export default function Header() {
         <NavLink to="/series" >
           Series
         </NavLink>
+        <NavLink to="/reviews" >
+          Reviews
+        </NavLink>
+        
       </nav>
     </div>
   );

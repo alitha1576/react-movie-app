@@ -102,9 +102,33 @@ nav li {
   color: #f5c518;
   text-align: left;
   position: relative;
-  padding-left: 3.5rem;
+  padding-left: 2.5rem;
   line-height: 1.2;
   margin-bottom: 1rem;
+}
+
+.sectionTitleHome {
+  transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.sectionTitleHome::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  font-size: 1.5rem;
+  color: #f5c518;
+  transition: transform 0.3s ease;
+}
+
+.sectionTitleHome:hover {
+  color: #ffd700;
+  transform: translateX(4px);
+}
+
+.sectionTitleHome:hover::before {
+  transform: translateX(4px);
 }
 
 

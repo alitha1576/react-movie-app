@@ -2,14 +2,8 @@ import useFetchData from "../hooks/useFetchData";
 import CardsContainer from "../components/CardsContainer";
 import { mapMovie } from "../utils/mappers";
 import { mapSeries } from "../utils/mappers";
-
-
-const API_MOVIES_URL =
-  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
-
-const API_SERIES_URL =
-  "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1";
-
+import { API_MOVIE_URL, API_SERIES_URL } from "../api/urls";
+import { Link } from "react-router";
 
 export default function Home() {
 
@@ -17,7 +11,7 @@ export default function Home() {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
-  } = useFetchData(API_MOVIES_URL, mapMovie);
+  } = useFetchData(API_MOVIE_URL, mapMovie);
 
 
   const {
@@ -37,11 +31,15 @@ export default function Home() {
   return (
     <div className="homeContainer">
       <div>
-        <h2 className="sectionTitle">Top rated movies</h2>
+        <Link to="/movies">
+          <h2 className="sectionTitle sectionTitleHome">Tranding movies now</h2>
+        </Link>
         <CardsContainer items={movies.slice(0, 4)} />
       </div>
       <div>
-        <h2 className="sectionTitle">Top rated series</h2>
+        <Link to="/series">
+          <h2 className="sectionTitle sectionTitleHome">Series: on air now</h2>
+        </Link>
         <CardsContainer items={series.slice(0, 4)} />
       </div>
     </div>
