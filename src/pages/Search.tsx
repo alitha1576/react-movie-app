@@ -1,6 +1,9 @@
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { API_SEARCH_MOVIE } from "../api/urls";
+import CardsContainer from "../components/CardsContainer";
+import useFetchData from "../hooks/useFetchData";
+import { mapMovie } from "../utils/mappers";
 import "../styles/SearchComponent.css";
 
 export default function Search() {
@@ -12,7 +15,13 @@ export default function Search() {
     ? `${API_SEARCH_MOVIE}&query=${encodeURIComponent(query)}`
     : null;
 
-  const handleChange = (event) => {
+  const {
+    data: movies,
+    loading: moviesLoading,
+    error: moviesError,
+  } = useFetchData(url, mapMovie);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
@@ -26,6 +35,14 @@ export default function Search() {
     setInputValue("");
   };
 
+  if (moviesLoading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (moviesError) {
+    return <h2>Error loading data</h2>;
+  }
+
   return (
     <>
       <div className="searchComponent">
@@ -34,13 +51,14 @@ export default function Search() {
           name="search"
           className="searchInput"
           value={inputValue}
-          placeholder="start..."
+          placeholder="start typing..."
           onChange={handleChange}
         />
         <button type="button" className="searchBtn" onClick={handleSearch}>
           Search
         </button>
       </div>
+      <CardsContainer items={movies} />
     </>
   );
 }

@@ -1,6 +1,11 @@
 import Card from "./Card";
+import { type CardType } from "../types/CardType";
 
-export default function CardsContainer({ items }) {
+type CardContainerType = {
+  items: CardType[];
+};
+
+export default function CardsContainer({ items }: CardContainerType) {
   return (
     <div className="cardsContainer">
       {items.map((item) => (

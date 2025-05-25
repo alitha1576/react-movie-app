@@ -4,7 +4,6 @@ import { mapMovie } from "../utils/mappers";
 import { API_MOVIE_URL } from "../api/urls";
 
 export default function Movies() {
-  
   const {
     data: movies,
     loading: moviesLoading,

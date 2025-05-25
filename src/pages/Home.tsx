@@ -6,13 +6,11 @@ import { API_MOVIE_URL, API_SERIES_URL } from "../api/urls";
 import { Link } from "react-router";
 
 export default function Home() {
-
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
   } = useFetchData(API_MOVIE_URL, mapMovie);
-
 
   const {
     data: series,

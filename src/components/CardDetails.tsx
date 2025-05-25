@@ -8,14 +8,8 @@ export default function CardDetails() {
 
   const { title, src, rating, overview, year, language } = state || {};
 
-  const parentRoute = window.location.pathname.includes("movies")
-    ? "/movies"
-    : window.location.pathname.includes("series")
-    ? "/series"
-    : "/home";
-
   const handleClose = () => {
-    navigate(parentRoute);
+    navigate(-1);
   };
 
   if (!state) {
