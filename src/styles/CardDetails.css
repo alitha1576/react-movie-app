@@ -63,3 +63,7 @@
 .closeButton:hover {
     background: #c0392b;
 }
+
+.addBtn {
+    background-color: #f5c518;
+}

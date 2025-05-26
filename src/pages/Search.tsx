@@ -45,6 +45,7 @@ export default function Search() {
 
   return (
     <>
+    <h2 className="sectionTitle">Search for movies</h2>
       <div className="searchComponent">
         <input
           type="text"

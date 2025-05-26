@@ -8,7 +8,10 @@ import Series from "./pages/Series.tsx";
 import Reviews from "./pages/Reviews.tsx";
 import Error from "./pages/Error.tsx";
 import Search from "./pages/Search.tsx";
+import Watchlist from "./pages/Watchlist.tsx";
 import CardDetails from "./components/CardDetails.tsx";
+import { GlobalProvider } from "./context/GlobalState.tsx";
+
 
 const router = createBrowserRouter([
   {
@@ -38,6 +41,13 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: "watchlist",
+        children: [
+          { index: true, Component: Watchlist },
+          { path: ":id", Component: CardDetails },
+        ],
+      },
+      {
         path: "home",
         children: [
           { index: true, Component: Home },
@@ -51,5 +61,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
+  <GlobalProvider>
     <RouterProvider router={router} />
+  </GlobalProvider>
 );

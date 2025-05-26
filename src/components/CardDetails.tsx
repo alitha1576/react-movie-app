@@ -1,12 +1,28 @@
-import "../styles/CardDetails.css";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import "../styles/CardDetails.css";
 
 export default function CardDetails() {
+  const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);
+
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
 
   const { title, src, rating, overview, year, language } = state || {};
+  
+  const movie = {
+    id,
+    title,
+    src,
+    rating,
+    overview,
+    year,
+    language,
+  };
+
+  const isInWatchlist = watchlist.some((movieInList) => movieInList.id === id);
 
   const handleClose = () => {
     navigate(-1);
@@ -26,6 +42,13 @@ export default function CardDetails() {
           <p>Language: {language}</p>
           <p>Year: {year?.slice(0, 4)}</p>
           <p>Overview: {overview}</p>
+          <button
+            className="addBtn"
+            disabled={isInWatchlist}
+            onClick={() => addMovieToWatchlist(movie)}
+          >
+            {isInWatchlist ? "In Watchlist" : "Add to Watchlist"}
+          </button>
         </div>
         <button className="closeButton" onClick={handleClose}>
           Close X
