@@ -4,7 +4,8 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import "../styles/CardDetails.css";
 
 export default function CardDetails() {
-  const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);
+  const { addMovieToWatchlist, removeMovieFromWatchlist, watchlist } =
+    useContext(GlobalContext);
 
   const { id } = useParams();
   const { state } = useLocation();
@@ -22,7 +23,15 @@ export default function CardDetails() {
     language,
   };
 
-  const isInWatchlist = watchlist.some((movieInList) => movieInList.id === id);
+  const isInWatchlist = watchlist.some((item) => item.id === id);
+
+  const handleToggle = () => {
+    if (isInWatchlist) {
+      removeMovieFromWatchlist(id);
+    } else {
+      addMovieToWatchlist(movie);
+    }
+  };
 
   const handleClose = () => {
     navigate(-1);
@@ -42,12 +51,8 @@ export default function CardDetails() {
           <p>Language: {language}</p>
           <p>Year: {year?.slice(0, 4)}</p>
           <p>Overview: {overview}</p>
-          <button
-            className="addBtn"
-            disabled={isInWatchlist}
-            onClick={() => addMovieToWatchlist(movie)}
-          >
-            {isInWatchlist ? "In Watchlist" : "Add to Watchlist"}
+          <button className="addBtn" onClick={handleToggle}>
+            {isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </button>
         </div>
         <button className="closeButton" onClick={handleClose}>
