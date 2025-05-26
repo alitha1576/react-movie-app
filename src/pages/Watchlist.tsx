@@ -7,7 +7,11 @@ export default function Watchlist() {
   return (
     <>
       <h2 className="sectionTitle">Watchlist: your movies and series</h2>
-      <CardsContainer items={watchlist} />
+      {watchlist.length > 0 ? (
+        <CardsContainer items={watchlist} />
+      ) : (
+        <h3>No movies or series in your list yet. Add some!</h3>
+      )}
     </>
   );
 }

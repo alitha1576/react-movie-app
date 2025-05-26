@@ -11,7 +11,7 @@ export default function CardDetails() {
   const navigate = useNavigate();
 
   const { title, src, rating, overview, year, language } = state || {};
-  
+
   const movie = {
     id,
     title,
