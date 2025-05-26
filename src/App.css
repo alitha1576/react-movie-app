@@ -131,6 +131,12 @@ nav li {
   transform: translateX(4px);
 }
 
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 @media screen and (max-width: 768px) {
   .sectionTitle {
@@ -138,3 +144,4 @@ nav li {
     padding-left: 1rem;
   }
 }
+
