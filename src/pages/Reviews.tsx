@@ -1,5 +1,6 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import "../styles/Form.css";
+import ReviewCardsContainer from "../components/ReviewCardsContainer";
+import "../styles/ReviewForm.css";
 
 type FormFields = {
   email: string;
@@ -9,67 +10,94 @@ type FormFields = {
 };
 
 export default function Review() {
-  const { register, handleSubmit } = useForm<FormFields>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>();
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
   };
 
   return (
     <>
-      <h2 className="sectionTitle">Reviews</h2>
+      <h2 className="sectionTitle">Add review</h2>
       <form action="" className="review" onSubmit={handleSubmit(onSubmit)}>
         <label className="formLabel">
           Email
           <input
             className="formInput"
             {...register("email", {
-              required: true,
+              required: "Email is required",
               pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
             })}
             type="text"
-            placeholder="email"
           />
+          {errors.email && (
+            <div className="red-text">{errors.email.message}</div>
+          )}
         </label>
         <label className="formLabel">
           Movie/Series name
           <input
             className="formInput"
             {...register("movie", {
-              required: true,
+              required: "Please enter the movie or series name",
             })}
             type="text"
-            placeholder="Movie/Series name"
           />
+          {errors.movie && (
+            <div className="red-text">{errors.movie.message}</div>
+          )}
         </label>
         <label className="formLabel">
-          Rating (1–10)
+          Rating
           <input
             className="formInput"
             {...register("rating", {
-              required: true,
-              min: 1,
-              max: 10,
+              required: "Please enter a rating from 1 to 10",
+              min: {
+                value: 1,
+                message: "Rating cannot be less than 1.",
+              },
+              max: {
+                value: 10,
+                message: "Rating cannot be more than 10.",
+              },
             })}
             type="number"
-            placeholder="Rating (1-10)"
+            placeholder="from 1 to 10"
           />
+          {errors.rating && (
+            <div className="red-text">{errors.rating.message}</div>
+          )}
         </label>
         <label className="formLabel">
           Review
           <textarea
             className="formTextarea"
             {...register("review", {
-              required: true,
-              minLength: 3,
+              required: "Please write your review",
+              minLength: {
+                value: 3,
+                message: "Review should be at least 3 characters long",
+              },
             })}
             placeholder="Write your thoughts..."
           />
+          {errors.review && (
+            <div className="red-text">{errors.review.message}</div>
+          )}
         </label>
-        <button className="submitButton" type="submit">
-          Submit
+        <button disabled={isSubmitting} className="submitButton" type="submit">
+          {isSubmitting ? "Loading..." : "Submit"}
         </button>
       </form>
+      <h2 className="sectionTitle">Reviews</h2>
+
+      <ReviewCardsContainer />
     </>
   );
 }
