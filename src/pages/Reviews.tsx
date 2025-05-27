@@ -19,6 +19,10 @@ export default function Review() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
+    const existingReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+    const newReview = { ...data, id: Date.now() };
+    const updatedReviews = [...existingReviews, newReview];
+    localStorage.setItem("reviews", JSON.stringify(updatedReviews));
   };
 
   return (
@@ -96,7 +100,6 @@ export default function Review() {
         </button>
       </form>
       <h2 className="sectionTitle">Reviews</h2>
-
       <ReviewCardsContainer />
     </>
   );
