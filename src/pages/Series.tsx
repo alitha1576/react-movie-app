@@ -4,23 +4,19 @@ import { mapSeries } from "../utils/mappers";
 import { API_SERIES_URL } from "../api/urls";
 
 export default function Series() {
-  const {
-    data: series,
-    loading: seriesLoading,
-    error: seriesError,
-  } = useFetchData(API_SERIES_URL, mapSeries);
+  const { data, loading, error } = useFetchData(API_SERIES_URL, mapSeries);
 
-  if (seriesLoading) {
+  if (loading) {
     return <h2>Loading...</h2>;
   }
 
-  if (seriesError) {
+  if (error) {
     return <h2>Error loading data</h2>;
   }
   return (
     <>
       <h2 className="sectionTitle">All series</h2>
-      <CardsContainer items={series} />
+      <CardsContainer items={data} />
     </>
   );
 }

@@ -4,24 +4,20 @@ import { mapMovie } from "../utils/mappers";
 import { API_MOVIE_URL } from "../api/urls";
 
 export default function Movies() {
-  const {
-    data: movies,
-    loading: moviesLoading,
-    error: moviesError,
-  } = useFetchData(API_MOVIE_URL, mapMovie);
+  const { data, loading, error } = useFetchData(API_MOVIE_URL, mapMovie);
 
-  if (moviesLoading) {
+  if (loading) {
     return <h2>Loading...</h2>;
   }
 
-  if (moviesError) {
+  if (error) {
     return <h2>Error loading data</h2>;
   }
 
   return (
     <>
       <h2 className="sectionTitle">All tranding movies now</h2>
-      <CardsContainer items={movies} />
+      <CardsContainer items={data} />
     </>
   );
 }

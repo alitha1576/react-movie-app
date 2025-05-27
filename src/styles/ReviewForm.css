@@ -69,4 +69,11 @@ input[type=number]::-webkit-outer-spin-button {
 .red-text {
     color: #f87171;
     font-size: 13px;
-    margin-top: 4px; }
+    margin-top: 4px; 
+}
+
+.successMsg {
+    color: green;
+    margin-top: 1rem;
+}
+

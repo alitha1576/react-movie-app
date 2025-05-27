@@ -1,5 +1,6 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import ReviewCardsContainer from "../components/ReviewCardsContainer";
+import { useState } from "react";
 import "../styles/ReviewForm.css";
 
 type FormFields = {
@@ -14,15 +15,24 @@ export default function Review() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<FormFields>();
 
+  const [submitted, setSubmitted] = useState(false);
+
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    setSubmitted(false);
     await new Promise((resolve) => setTimeout(resolve, 1000));
+    
     console.log(data);
+
     const existingReviews = JSON.parse(localStorage.getItem("reviews")) || [];
     const newReview = { ...data, id: Date.now() };
     const updatedReviews = [...existingReviews, newReview];
     localStorage.setItem("reviews", JSON.stringify(updatedReviews));
+
+    reset();
+    setSubmitted(true);
   };
 
   return (
@@ -98,7 +108,12 @@ export default function Review() {
         <button disabled={isSubmitting} className="submitButton" type="submit">
           {isSubmitting ? "Loading..." : "Submit"}
         </button>
+
+        {submitted && (
+          <div className="successMsg">Review submitted successfully!</div>
+        )}
       </form>
+
       <h2 className="sectionTitle">Reviews</h2>
       <ReviewCardsContainer />
     </>

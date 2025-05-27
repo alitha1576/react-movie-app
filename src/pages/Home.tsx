@@ -4,6 +4,7 @@ import { mapMovie } from "../utils/mappers";
 import { mapSeries } from "../utils/mappers";
 import { API_MOVIE_URL, API_SERIES_URL } from "../api/urls";
 import { Link } from "react-router";
+import ReviewCardsContainer from "../components/ReviewCardsContainer";
 
 export default function Home() {
   const {
@@ -39,6 +40,12 @@ export default function Home() {
           <h2 className="sectionTitle sectionTitleHome">Series: on air now</h2>
         </Link>
         <CardsContainer items={series.slice(0, 4)} />
+      </div>
+      <div>
+        <Link to="/reviews">
+          <h2 className="sectionTitle sectionTitleHome">Reviews</h2>
+        </Link>
+        <ReviewCardsContainer limit={3} />
       </div>
     </div>
   );
