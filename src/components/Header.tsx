@@ -5,7 +5,10 @@ export default function Header() {
   return (
     <div className="headerContainer">
       <NavLink to="/">
-        <img src={logo} alt="logo" className="logo" />
+        <div className="logo">
+          <img src={logo} alt="logo" className="logo" />
+          <span className="logoName">MovieApp</span>
+        </div>
       </NavLink>
 
       <nav>

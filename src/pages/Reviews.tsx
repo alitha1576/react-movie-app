@@ -23,7 +23,7 @@ export default function Review() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     setSubmitted(false);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    
+
     console.log(data);
 
     const existingReviews = JSON.parse(localStorage.getItem("reviews")) || [];
@@ -37,6 +37,9 @@ export default function Review() {
 
   return (
     <>
+      <h2 className="sectionTitle">Reviews</h2>
+      <ReviewCardsContainer reload={submitted} />
+      
       <h2 className="sectionTitle">Add review</h2>
       <form action="" className="review" onSubmit={handleSubmit(onSubmit)}>
         <label className="formLabel">
@@ -113,9 +116,6 @@ export default function Review() {
           <div className="successMsg">Review submitted successfully!</div>
         )}
       </form>
-
-      <h2 className="sectionTitle">Reviews</h2>
-      <ReviewCardsContainer />
     </>
   );
 }

@@ -22,6 +22,20 @@
     align-items: center;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoName {
+  margin-left: 1rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logoName:hover {
+  color: white;
+}
+
 a {
   color: #fff;
 }
@@ -105,6 +119,7 @@ nav li {
   padding-left: 2.5rem;
   line-height: 1.2;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .sectionTitleHome {

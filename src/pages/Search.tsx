@@ -15,11 +15,7 @@ export default function Search() {
     ? `${API_SEARCH_MOVIE}&query=${encodeURIComponent(query)}`
     : null;
 
-  const {
-    data: movies,
-    loading: moviesLoading,
-    error: moviesError,
-  } = useFetchData(url, mapMovie);
+  const { data, loading, error } = useFetchData(url, mapMovie);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -35,17 +31,21 @@ export default function Search() {
     setInputValue("");
   };
 
-  if (moviesLoading) {
+  if (loading) {
     return <h2>Loading...</h2>;
   }
 
-  if (moviesError) {
+  if (error) {
     return <h2>Error loading data</h2>;
   }
 
+  console.log(data);
+
   return (
     <>
-    <h2 className="sectionTitle">Search for movies</h2>
+      <h2 className="sectionTitle">
+        Search for {query && query.length > 0 ? query : "..."}
+      </h2>
       <div className="searchComponent">
         <input
           type="text"
@@ -59,7 +59,7 @@ export default function Search() {
           Search
         </button>
       </div>
-      <CardsContainer items={movies} />
+      <CardsContainer items={data} />
     </>
   );
 }

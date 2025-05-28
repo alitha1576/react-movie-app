@@ -2,7 +2,11 @@ import ReviewCard from "./ReviewCard";
 import "../styles/ReviewCard.css";
 import { useState, useEffect } from "react";
 
-export default function ReviewCardsContainer({ limit }: { limit?: number }) {
+export default function ReviewCardsContainer({
+  reload,
+}: {
+  reload: boolean;
+}) {
   const getDataFromLocalStorage = (key: string) => {
     try {
       const data = localStorage.getItem(key);
@@ -21,7 +25,12 @@ export default function ReviewCardsContainer({ limit }: { limit?: number }) {
     }
   }, []);
 
-  const displayedReviews = limit ? reviews.slice(-limit).reverse() : reviews;
+  useEffect(() => {
+    const data = getDataFromLocalStorage("reviews");
+    if (data) {
+      setReviews(data);
+    }
+  }, [reload]);
 
   return (
     <div className="reviewsContainer">
