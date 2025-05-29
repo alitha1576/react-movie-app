@@ -39,8 +39,6 @@ export default function Search() {
     return <h2>Error loading data</h2>;
   }
 
-  console.log(data);
-
   return (
     <>
       <h2 className="sectionTitle">
@@ -60,6 +58,11 @@ export default function Search() {
         </button>
       </div>
       <CardsContainer items={data} />
+      {query && data.length === 0 ? (
+        <h2>No results for "{query}"</h2>
+      ) : (
+        <CardsContainer items={data} />
+      )}
     </>
   );
 }
