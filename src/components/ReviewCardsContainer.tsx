@@ -1,12 +1,9 @@
 import ReviewCard from "./ReviewCard";
 import "../styles/ReviewCard.css";
 import { useState, useEffect } from "react";
+import type { ReviewCardType } from "../types/ReviewCard";
 
-export default function ReviewCardsContainer({
-  reload,
-}: {
-  reload: boolean;
-}) {
+export default function ReviewCardsContainer({ reload }: { reload: boolean }) {
   const getDataFromLocalStorage = (key: string) => {
     try {
       const data = localStorage.getItem(key);
@@ -17,7 +14,7 @@ export default function ReviewCardsContainer({
     }
   };
 
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState<ReviewCardType[]>([]);
   useEffect(() => {
     const data = getDataFromLocalStorage("reviews");
     if (data) {

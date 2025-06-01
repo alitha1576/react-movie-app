@@ -2,8 +2,8 @@ export type CardType = {
   id: string
   title: string
   src: string
-  rating: number
+  rating: string
   overview: string
-  year: number
+  year: string | number
   language: string
 }

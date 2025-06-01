@@ -24,9 +24,7 @@ export default function Review() {
     setSubmitted(false);
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    console.log(data);
-
-    const existingReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+    const existingReviews = JSON.parse(localStorage.getItem("reviews") || "") || [];
     const newReview = { ...data, id: Date.now() };
     const updatedReviews = [...existingReviews, newReview];
     localStorage.setItem("reviews", JSON.stringify(updatedReviews));

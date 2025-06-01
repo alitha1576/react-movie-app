@@ -1,5 +1,6 @@
+import type {ResponseType} from "../types/api"
 
-export const mapMovie = (item: Record<string, string | number>) => ({
+export const mapMovie = (item: ResponseType) => ({
   id: item.id,
   title: item.title,
   src: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
@@ -10,7 +11,7 @@ export const mapMovie = (item: Record<string, string | number>) => ({
 });
 
 
-export const mapSeries = (item: Record<string, string | number>) => ({
+export const mapSeries = (item: ResponseType) => ({
     id: item.id,
     title: item.name,
     src: `https://image.tmdb.org/t/p/w500${item.poster_path}`,

@@ -1,19 +1,9 @@
 import "../styles/ReviewCard.css";
 import { Rating } from "@mui/material";
+import type { ReviewCardType } from "../types/ReviewCard";
 
-type ReviewCardProps = {
-  email: string;
-  movie: string;
-  review: string;
-  rating: number;
-};
 
-export default function ReviewCard({
-  email,
-  movie,
-  review,
-  rating,
-}: ReviewCardProps) {
+export default function ReviewCard({ email, movie, review, rating }: ReviewCardType) {
   const starRating = rating / 2;
 
   return (

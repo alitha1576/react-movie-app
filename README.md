@@ -50,4 +50,5 @@ Users can browse previews, search for movies, add them to a watchlist, and leave
 - React Router for client-side routing
 - React Context API for global Watchlist state
 - React Hook Form for form handling
+- Eslint for code style
 

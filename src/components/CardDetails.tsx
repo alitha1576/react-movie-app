@@ -2,18 +2,19 @@ import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import "../styles/CardDetails.css";
+import type { CardType } from "../types/CardType";
 
 export default function CardDetails() {
   const { addMovieToWatchlist, removeMovieFromWatchlist, watchlist } =
     useContext(GlobalContext);
 
-  const { id } = useParams();
+  const { id = "" } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
 
   const { title, src, rating, overview, year, language } = state || {};
 
-  const movie = {
+  const movie: CardType = {
     id,
     title,
     src,

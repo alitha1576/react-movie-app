@@ -13,7 +13,7 @@ export default function Search() {
 
   const url = query
     ? `${API_SEARCH_MOVIE}&query=${encodeURIComponent(query)}`
-    : null;
+    : "";
 
   const { data, loading, error } = useFetchData(url, mapMovie);
 

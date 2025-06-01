@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { options } from "../api/tmdb";
 import type { CardType } from "../types/CardType";
+import type {ResponseType} from "../types/api"
 
-type MapFnFunction = (item: Record<string, string | number>)=> CardType;
+
+type MapFnFunction = (item: ResponseType)=> CardType;
 
 const useFetchData = ( url: string, mapFn: MapFnFunction ) => {
   const [ data, setData ] = useState([]);
