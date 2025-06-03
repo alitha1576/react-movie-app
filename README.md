@@ -29,6 +29,8 @@ Users can browse previews, search for movies, add them to a watchlist, and leave
 3. **Run the development server:**
   npm run dev
 
+4. **Open App in Google Chrome**
+
 ## Features List
 
 - Homepage displaying previews of latest movies and TV series

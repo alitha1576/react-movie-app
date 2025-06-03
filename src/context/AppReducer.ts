@@ -1,4 +1,14 @@
-export default (state, action) => {
+import type { CardType } from "../types/CardType";
+
+type State = {
+  watchlist: CardType[];
+};
+
+type Action =
+  | { type: "ADD_MOVIE_TO_WATCHLIST"; payload: CardType }
+  | { type: "REMOVE_MOVIE_FROM_WATCHLIST"; payload: string };
+
+  export default function AppReducer(state: State, action: Action): State {
     switch(action.type) {
         case "ADD_MOVIE_TO_WATCHLIST":
             return {

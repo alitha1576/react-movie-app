@@ -57,7 +57,6 @@ export default function Search() {
           Search
         </button>
       </div>
-      <CardsContainer items={data} />
       {query && data.length === 0 ? (
         <h2>No results for "{query}"</h2>
       ) : (

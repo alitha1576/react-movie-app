@@ -25,6 +25,7 @@ export const GlobalProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   useEffect(() => {
+
     localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
   }, [state.watchlist]);
 
