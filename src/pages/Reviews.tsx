@@ -24,7 +24,8 @@ export default function Review() {
     setSubmitted(false);
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    const existingReviews = JSON.parse(localStorage.getItem("reviews") || "") || [];
+    const existingReviews =
+      JSON.parse(localStorage.getItem("reviews") || "") || [];
     const newReview = { ...data, id: Date.now() };
     const updatedReviews = [...existingReviews, newReview];
     localStorage.setItem("reviews", JSON.stringify(updatedReviews));
@@ -37,7 +38,7 @@ export default function Review() {
     <>
       <h2 className="sectionTitle">Reviews</h2>
       <ReviewCardsContainer reload={submitted} />
-      
+
       <h2 className="sectionTitle">Add review</h2>
       <form action="" className="review" onSubmit={handleSubmit(onSubmit)}>
         <label className="formLabel">
